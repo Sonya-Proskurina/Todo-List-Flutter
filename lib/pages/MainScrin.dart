@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MainScrin extends StatefulWidget {
@@ -8,20 +9,56 @@ class MainScrin extends StatefulWidget {
 }
 
 class _MainScrinState extends State<MainScrin> {
+
+  void initFirebase() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    initFirebase();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.white,
         appBar: AppBar(
         title: Text("Список дел"),
+    backgroundColor: Colors.deepOrangeAccent,
     centerTitle: true,
     ),
       body: Column(
         children: [
-          Text('Main Scrin', style: TextStyle(color: Colors.white),),
+          Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.accessibility_new,
+                size: 300,
+                color: Colors.deepOrangeAccent,
+              ),
+            ],
+          ),
+
+        Text ( "Тестовое приложение - список задач на флаттер!",
+            style: TextStyle(
+              color: Colors.deepOrangeAccent,
+              fontSize: 24,
+            ),
+          ),
+
+
           ElevatedButton(onPressed: () {
             Navigator.pushNamed(context, '/todo');
-          }, child: Text("Перейти далее"))
+          }, child: Text("Перейти к списку дел"),
+            style: ElevatedButton.styleFrom(primary: Colors.deepOrangeAccent)
+          ),
+
         ],
       ),
     );

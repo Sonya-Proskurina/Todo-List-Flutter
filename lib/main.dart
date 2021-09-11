@@ -11,5 +11,4 @@ void main() => runApp(MaterialApp(
     '/' : (context) => MainScrin(),
     '/todo': (context) => Home(),
   },
-)
-);
+));
